@@ -62,10 +62,44 @@ impl Solution {
             my_binary_heap.push((*value, *key))
         }
 
-        while let Some(item) = my_binary_heap.pop(){
+        while let Some(item) = my_binary_heap.pop() {
             result.push(item.1);
             if result.len() == k as usize {
-                break
+                break;
+            }
+        }
+
+        result
+    }
+
+    // time complexity : O(n)
+    // space complexity : 0(n)
+    pub fn top_k_frequent_using_buckets(nums: Vec<i32>, k: i32) -> Vec<i32> {
+        let mut item_with_frequency: HashMap<i32, u32> = HashMap::new();
+        let mut result: Vec<i32> = vec![];
+        let mut max_frequency: u32 = 0;
+
+        for i in nums {
+            let count = item_with_frequency
+                .entry(i)
+                .and_modify(|e| *e += 1)
+                .or_insert(1);
+            max_frequency = max_frequency.max(*count);
+        }
+
+        let mut buckets: Vec<Vec<i32>> = vec![vec![]; max_frequency as usize];
+
+        for (key, value) in &item_with_frequency {
+            buckets[(*value - 1) as usize].push(*key)
+        }
+
+        for i in (1..=max_frequency).rev() {
+            let items = &buckets[(i - 1) as usize];
+            for item in items {
+                result.push(*item);
+                if result.len() == k as usize {
+                    return result
+                }
             }
         }
 
@@ -98,6 +132,19 @@ mod tests {
         assert!(expected.iter().any(|e| *e == actual));
 
         let actual = Solution::top_k_frequent_using_binary_heap(vec![1, 2, 2, 2, 2, 3, 3, 3], 1);
+        let expected = vec![2];
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn it_works_bucket_sorting() {
+        let actual =
+            Solution::top_k_frequent_using_buckets(vec![1, 2, 2, 2, 2, 3, 3, 3, 3], 2);
+        let expected = [vec![2, 3], vec![3, 2]];
+        // asserting with any of pair because hash_map does not maintain order
+        assert!(expected.iter().any(|e| *e == actual));
+
+        let actual = Solution::top_k_frequent_using_buckets(vec![1, 2, 2, 2, 2, 3, 3, 3], 1);
         let expected = vec![2];
         assert_eq!(expected, actual);
     }
