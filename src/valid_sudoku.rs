@@ -3,8 +3,8 @@ use std::collections::HashSet;
 struct Solution;
 
 impl Solution {
-    // time complexity : 0(1) for this problem but 0(N) for general sudoku
-    // space complexity : 0(1) for this problem but 0(N) for general sudoku
+    // time complexity : O(1) for this problem but O(N) for general sudoku
+    // space complexity : O(1) for this problem but O(N) for general sudoku
     pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
         let mut rows: Vec<HashSet<char>> = vec![HashSet::new(); 9];
         let mut cols: Vec<HashSet<char>> = vec![HashSet::new(); 9];

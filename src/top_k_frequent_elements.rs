@@ -42,7 +42,7 @@ impl Solution {
     }
 
     // time complexity : O(n log n)
-    // space complexity : 0(n)
+    // space complexity : O(n)
     pub fn top_k_frequent_using_binary_heap(nums: Vec<i32>, k: i32) -> Vec<i32> {
         // store frequency of items
         let mut item_with_frequency: HashMap<i32, u32> = HashMap::new();
@@ -73,7 +73,7 @@ impl Solution {
     }
 
     // time complexity : O(n)
-    // space complexity : 0(n)
+    // space complexity : O(n)
     pub fn top_k_frequent_using_buckets(nums: Vec<i32>, k: i32) -> Vec<i32> {
         let mut item_with_frequency: HashMap<i32, u32> = HashMap::new();
         let mut result: Vec<i32> = vec![];
