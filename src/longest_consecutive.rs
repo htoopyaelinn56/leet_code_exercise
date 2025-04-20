@@ -13,8 +13,10 @@ impl Solution {
 
         for i in &my_set {
             let mut consecutive_count = 0;
+
+            // this means if the item is start of sequence
             if !my_set.contains(&(i - 1)) {
-                // O(1) here
+                // O(1) here, loop till there is item with increment value of 1
                 while my_set.contains(&(i + consecutive_count)) {
                     consecutive_count += 1;
                 }
