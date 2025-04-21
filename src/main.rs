@@ -6,6 +6,7 @@ mod top_k_frequent_elements;
 mod product_of_array_except_self;
 mod valid_sudoku;
 mod longest_consecutive;
+mod is_palindrome;
 
 fn main() {
     println!("Hello, world!");
