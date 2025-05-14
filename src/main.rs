@@ -8,6 +8,7 @@ mod valid_sudoku;
 mod longest_consecutive;
 mod is_palindrome;
 mod two_sum_2;
+mod three_sum;
 
 fn main() {
     println!("Hello, world!");
